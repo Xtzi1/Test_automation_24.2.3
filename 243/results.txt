@@ -1,0 +1,16 @@
+2023-02-03 00:14:39.603210
+{"code":200,"type":"unknown","message":"logged in user session:1675372479918"}
+2023-02-03 00:14:40.324503
+{"code":200,"type":"unknown","message":"1010"}
+2023-02-03 00:14:41.090161
+{"code":200,"type":"unknown","message":"logged in user session:1675372481403"}
+2023-02-03 00:14:41.814313
+{'id': 1010, 'username': 'superuser666', 'firstName': 'Usero4ek', 'lastName': 'Userov', 'email': 'user@user.ru', 'password': 'password', 'phone': '12345678910', 'userStatus': 0}
+2023-02-03 00:14:42.553703
+{"code":200,"type":"unknown","message":"1010"}
+2023-02-03 00:14:43.303319
+{'id': 1010, 'username': 'superuser666', 'firstName': 'New_name', 'lastName': 'New_lastname', 'email': 'user@user.ru', 'password': 'password', 'phone': '12345678910', 'userStatus': 0}
+2023-02-03 00:14:44.072391
+{"code":200,"type":"unknown","message":"superuser666"}
+2023-02-03 00:14:44.793156
+{'code': 1, 'type': 'error', 'message': 'User not found'}
