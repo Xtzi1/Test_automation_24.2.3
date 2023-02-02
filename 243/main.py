@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 import requests
 from data import user, server
 
@@ -11,7 +12,7 @@ def getUserLogin(login, password):
         'password': password
         },
         headers={'accept': 'application/json'})
-    return print(response.text)
+    return response.text
 
 
 def createUser(id, username, first, last, email, password, phone, status):
@@ -28,7 +29,7 @@ def createUser(id, username, first, last, email, password, phone, status):
          headers={'accept': 'application/json',
                   'Content-Type': 'application/json'},
          data=json.dumps(payload))
-    return print(response.text)
+    return response.text
 
 def putUser(id, username, first, last, email, password, phone, status):
     payload = {'id': f'{id}',
@@ -44,39 +45,48 @@ def putUser(id, username, first, last, email, password, phone, status):
         headers={'accept': 'application/json',
                  'Content-Type': 'application/json'},
         data=json.dumps(payload))
-    return print(response.text)
+    return response.text
 
 def getUserData(username):
     response = requests.get(
         f'{server}user/' + username)
-    return print(response.json())
+    return response.json()
 
 def deleteUser(username):
     response = requests.delete(
         f'{server}user/' + username)
-    return print(response.text)
+    return response.text
+
+def write(smth):
+    with open('results.txt', 'a', encoding='utf8') as my_file:
+        my_file.write(f'{smth}\n')
+def printAndWrite(smth):
+    print(smth)
+    dt_now = datetime.now()
+    write(str(dt_now))
+    write(str(smth))
 
 print('Логинимся юзером из файла data и проверяем')
-getUserLogin(user['username'], user['password'])
+printAndWrite(getUserLogin(user['username'], user['password']))
 
 print('Создаем юзера superuser666 и проверяем')
-createUser(1010, 'superuser666', 'Usero4ek', 'Userov', 'user@user.ru', 'password', '12345678910', '0')
+printAndWrite(createUser(1010, 'superuser666', 'Usero4ek', 'Userov', 'user@user.ru', 'password', '12345678910', '0'))
 
 print('Логинимся созданным юзером')
-getUserLogin('superuser666', 'password')
+printAndWrite(getUserLogin('superuser666', 'password'))
 
 print('Получаем данные юзера')
-getUserData('superuser666')
+printAndWrite(getUserData('superuser666'))
 
 print('Меняем данные юзера')
-putUser(1010, 'superuser666', 'New_name', 'New_lastname', 'user@user.ru', 'password', '12345678910', '0')
+printAndWrite(putUser(1010, 'superuser666', 'New_name', 'New_lastname', 'user@user.ru', 'password', '12345678910', '0'))
 
 print('Проверяем что данные изменились новым запросом данных')
-getUserData('superuser666')
+printAndWrite(getUserData('superuser666'))
 
 print('Удаляем юзера')
-deleteUser('superuser666')
+printAndWrite(deleteUser('superuser666'))
 
 print('Проверяем что юзера больше нет')
-getUserData('superuser666')
+printAndWrite(getUserData('superuser666'))
 
